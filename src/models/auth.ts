@@ -8,7 +8,7 @@ export const Auth = sequelize.define('Auth', {
         autoIncrement: true
     },
     usuario: { type: DataTypes.STRING, unique: true, allowNull: false },
-    contrasenya: { type: DataTypes.STRING, allowNull: false },
-    idUsuario: { type: DataTypes.NUMBER, allowNull: false },
-    disponible: { type: DataTypes.BIGINT, allowNull: false },
+    password: { type: DataTypes.STRING, allowNull: false },
+    idUsuario: { type: DataTypes.INTEGER, allowNull: true },
+    disponible: { type: DataTypes.INTEGER, allowNull: false },
 });

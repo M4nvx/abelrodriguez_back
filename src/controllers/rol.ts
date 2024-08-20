@@ -13,3 +13,19 @@ export const register = async (req: Request, res: Response) => {
         msg: `Rol.. create success...`
     });
 }
+
+export const getAllAsync = async (req: Request, res: Response) => {
+
+    const entities = await Rol.findAll({ where: { disponible: 1 } });
+
+    res.json(entities);
+}
+
+export const getByIdAsync = async (req: Request, res: Response) => {
+
+    const { id } = req.body;
+
+    const entity = await Rol.findOne({ where: { id: id } });
+
+    res.json(entity);
+}

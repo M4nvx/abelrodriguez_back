@@ -7,9 +7,9 @@ export const Expediente = sequelize.define('Expediente', {
         primaryKey: true,
         autoIncrement: true
     },
-    idUsuario: { type: DataTypes.NUMBER, allowNull: false },
+    idUsuario: { type: DataTypes.INTEGER, allowNull: false },
     idEstadoExpediente: { type: DataTypes.STRING, allowNull: false },
     detalle: { type: DataTypes.STRING, allowNull: false },
     fecha: { type: DataTypes.DATE, allowNull: false },
-    disponible: { type: DataTypes.BIGINT, allowNull: false },
+    disponible: { type: DataTypes.INTEGER, allowNull: false },
 });

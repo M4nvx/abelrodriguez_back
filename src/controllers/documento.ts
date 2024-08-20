@@ -22,3 +22,21 @@ export const register = async (req: Request, res: Response) => {
         });
     }
 }
+
+export const getByIdExpedienteAsync = async (req: Request, res: Response) => {
+
+    const { idExpediente } = req.body;
+
+    const entities = await Documento.findAll({ where: { disponible: 1, idExpediente: idExpediente } });
+
+    res.json(entities);
+}
+
+export const getByIdAsync = async (req: Request, res: Response) => {
+
+    const { id } = req.body;
+
+    const entity = await Documento.findOne({ where: { id: id } });
+
+    res.json(entity);
+}

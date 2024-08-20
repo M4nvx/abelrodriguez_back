@@ -7,9 +7,9 @@ export const Documento = sequelize.define('Documento', {
         primaryKey: true,
         autoIncrement: true
     },
-    idExpediente: { type: DataTypes.NUMBER, allowNull: false },
+    idExpediente: { type: DataTypes.INTEGER, allowNull: false },
     nombre: { type: DataTypes.STRING, allowNull: false },
     descripcion: { type: DataTypes.STRING, allowNull: false },
     fecha: { type: DataTypes.DATE, allowNull: false },
-    disponible: { type: DataTypes.BIGINT, allowNull: false },
+    disponible: { type: DataTypes.INTEGER, allowNull: false },
 });0

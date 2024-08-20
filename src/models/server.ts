@@ -62,16 +62,16 @@ class Server {
     async dbConnect() {
         try {
             // await sequelize.authenticate();
-            await Auth.sync({ force: true });
-            await Caso.sync({ force: true });
+            await Auth.sync();
+            await Caso.sync();
             await Documento.sync();
             await EstadoExpediente.sync();
             await Expediente.sync();
-            await Resolucion.sync({ force: true });
+            await Resolucion.sync();
             await Rol.sync();
-            await Sentencia.sync({ force: true });
+            await Sentencia.sync();
             await TipoDocumento.sync();
-            await Usuario.sync({ force: true });
+            await Usuario.sync();
 
             console.log("Contexión Exitosa");
         } catch (err) {

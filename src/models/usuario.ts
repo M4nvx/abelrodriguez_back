@@ -7,12 +7,12 @@ export const Usuario = sequelize.define('Usuario', {
         primaryKey: true,
         autoIncrement: true
     },
-    idTipoDocumento: { type: DataTypes.NUMBER, allowNull: false },
-    numeroDocumento: { type: DataTypes.NUMBER, allowNull: false },
-    idEstado: { type: DataTypes.NUMBER, allowNull: false },
+    idTipoDocumento: { type: DataTypes.INTEGER, allowNull: false },
+    numeroDocumento: { type: DataTypes.INTEGER, allowNull: false },
+    idEstado: { type: DataTypes.INTEGER, allowNull: false },
     nombres: { type: DataTypes.STRING, allowNull: false },
     apellidos: { type: DataTypes.STRING, allowNull: false },
     direccion: { type: DataTypes.STRING, allowNull: true },
     telefono: { type: DataTypes.STRING, allowNull: true },
-    disponible: { type: DataTypes.BIGINT, allowNull: false },
+    disponible: { type: DataTypes.INTEGER, allowNull: false },
 });

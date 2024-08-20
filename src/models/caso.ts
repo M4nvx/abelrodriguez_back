@@ -9,8 +9,8 @@ export const Caso = sequelize.define('Caso', {
     },
     numeroCaso: { type: DataTypes.STRING, allowNull: false },
     foto: { type: DataTypes.STRING, allowNull: false },
-    titulo: { type: DataTypes.NUMBER, allowNull: false },
-    detalle: { type: DataTypes.NUMBER, allowNull: false },
+    titulo: { type: DataTypes.STRING, allowNull: false },
+    detalle: { type: DataTypes.STRING, allowNull: false },
     fecha: { type: DataTypes.DATE, allowNull: false },
-    disponible: { type: DataTypes.BIGINT, allowNull: false },
+    disponible: { type: DataTypes.INTEGER, allowNull: false },
 });

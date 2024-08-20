@@ -23,3 +23,21 @@ export const register = async (req: Request, res: Response) => {
         });
     }
 }
+
+export const getByIdUsuarioAsync = async (req: Request, res: Response) => {
+
+    const { idUsuario } = req.body;
+
+    const entities = await Expediente.findAll({ where: { disponible: 1, idUsuario : idUsuario } });
+
+    res.json(entities);
+}
+
+export const getByIdAsync = async (req: Request, res: Response) => {
+
+    const { id } = req.body;
+
+    const entity = await Expediente.findOne({ where: { id: id } });
+
+    res.json(entity);
+}

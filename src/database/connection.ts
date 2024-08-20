@@ -1,7 +1,7 @@
 import { Sequelize } from "sequelize";
 
 const sequelize = new Sequelize('abelrodriguez_web_db', 'abelrodriguez', 'Firefox@2000', {
-    host : 'https://abelrodriguez.pe:2083/',
+    host : '198.251.89.30',
     dialect : 'mysql'
 });
 

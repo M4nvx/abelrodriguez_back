@@ -17,3 +17,19 @@ export const register = async (req: Request, res: Response) => {
         msg: `Resolucion ${descripcion} create success...`
     });
 }
+
+export const getAllAsync = async (req: Request, res: Response) => {
+
+    const entities = await Resolucion.findAll({ where: { disponible: 1 } });
+
+    res.json(entities);
+}
+
+export const getByIdAsync = async (req: Request, res: Response) => {
+
+    const { id } = req.body;
+
+    const entity = await Resolucion.findOne({ where: { id: id } });
+
+    res.json(entity);
+}
