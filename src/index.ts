@@ -4,3 +4,5 @@ import dotenv from 'dotenv';
 dotenv.config();
 
 const server = new Server();
+
+//console.log("Hola mundo");

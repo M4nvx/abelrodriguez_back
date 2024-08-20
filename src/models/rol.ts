@@ -1,12 +1,12 @@
 import { DataTypes } from "sequelize";
 import sequelize from "../database/connection";
 
-export const User = sequelize.define('User', {
+export const Rol = sequelize.define('Rol', {
     id: {
         type: DataTypes.INTEGER,
         primaryKey: true,
         autoIncrement: true
     },
-    user: { type: DataTypes.STRING, unique: true, allowNull: false },
-    password: { type: DataTypes.STRING, allowNull: false }
+    descripcion: { type: DataTypes.STRING, allowNull: false },
+    disponible :  { type: DataTypes.INTEGER, allowNull: false },
 });
