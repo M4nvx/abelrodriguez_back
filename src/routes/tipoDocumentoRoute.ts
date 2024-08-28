@@ -1,9 +1,9 @@
 import { Router } from "express";
-import { getAllAsync, getByIdAsync, register } from "../controllers/tipoDocumento";
+import { getAllAsync, getAsync, register } from "../controllers/tipoDocumento";
 
 const tipoDocumentoRoute = Router();
-tipoDocumentoRoute.post("/api/tipodocumento/register", register);
-tipoDocumentoRoute.get("/api/tipodocumento/getAll", getAllAsync);
-tipoDocumentoRoute.get("/api/tipodocumento/getById", getByIdAsync);
+tipoDocumentoRoute.post("/register", register);
+tipoDocumentoRoute.get("/getAll", getAllAsync);
+tipoDocumentoRoute.get("/:id", getAsync);
 
 export default tipoDocumentoRoute;

@@ -14,5 +14,7 @@ export const Usuario = sequelize.define('Usuario', {
     apellidos: { type: DataTypes.STRING, allowNull: false },
     direccion: { type: DataTypes.STRING, allowNull: true },
     telefono: { type: DataTypes.STRING, allowNull: true },
+    observacion: { type: DataTypes.STRING, allowNull: false },
+    fechaNacimiento: { type: DataTypes.DATE, allowNull: false },
     disponible: { type: DataTypes.INTEGER, allowNull: false },
 });

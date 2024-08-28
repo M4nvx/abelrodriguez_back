@@ -1,6 +1,7 @@
 import express, { Application } from 'express';
 import cors from 'cors';
 
+import articuloRoute from '../routes/articuloRoute';
 import authRoute from '../routes/authRoute';
 import casoRoute from '../routes/casoRoute';
 import resolucionRoute from '../routes/resolucionRoute';
@@ -11,6 +12,7 @@ import estadoExpedienteRoute from '../routes/estadoExpedienteRoute';
 import expedienteRoute from '../routes/expedienteRoute';
 import rolRoute from '../routes/rolRoute';
 import tipoDocumentoRoute from '../routes/tipoDocumentoRoute';
+import tipoDocumentoIdentidadRoute from '../routes/tipoDocumentoIdentidadRoute';
 
 import { Usuario } from './usuario';
 import { Resolucion } from './resolucion';
@@ -22,6 +24,8 @@ import { EstadoExpediente } from './estadoExpediente';
 import { Expediente } from './expediente';
 import { Rol } from './rol';
 import { TipoDocumento } from './tipoDocumento';
+import { TipoDocumentoIdentidad } from './tipoDocumentoIdentidad';
+import { Articulo } from './articulo';
 
 class Server {
 
@@ -44,6 +48,7 @@ class Server {
     }
 
     router() {
+        this.app.use('/api/articulo', articuloRoute);
         this.app.use(authRoute);
         this.app.use('/api/caso', casoRoute);
         this.app.use('/api/documento',documentoRoute);
@@ -53,6 +58,7 @@ class Server {
         this.app.use('/api/rol',rolRoute);
         this.app.use('/api/sentencia',sentenciaRoute);
         this.app.use('/api/tipoDocumento',tipoDocumentoRoute);
+        this.app.use('/api/tipoDocumentoIdentidad',tipoDocumentoIdentidadRoute);
         this.app.use('/api/usuario',usuarioRoute);
     }
 
@@ -66,6 +72,7 @@ class Server {
     async dbConnect() {
         try {
             // await sequelize.authenticate(){ force: true };
+            await Articulo.sync({ force: true });
             await Auth.sync();
             await Caso.sync();
             await Documento.sync({ force: true });
@@ -74,8 +81,9 @@ class Server {
             await Resolucion.sync({ force: true });
             await Rol.sync();
             await Sentencia.sync();
-            await TipoDocumento.sync();
-            await Usuario.sync();
+            await TipoDocumento.sync({ force: true });
+            await TipoDocumentoIdentidad.sync();
+            await Usuario.sync({ force: true });
 
             console.log("Contexión Exitosa");
         } catch (err) {

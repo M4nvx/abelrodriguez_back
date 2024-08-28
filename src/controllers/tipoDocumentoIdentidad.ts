@@ -1,10 +1,11 @@
 import { Request, Response } from "express";
-import { TipoDocumento } from "../models/tipoDocumento";
+import { TipoDocumentoIdentidad } from "../models/tipoDocumentoIdentidad";
+
 
 export const register = async (req: Request, res: Response) => {
     const { descripcion } = req.body;
 
-    TipoDocumento.create({
+    TipoDocumentoIdentidad.create({
         descripcion: descripcion,
         disponible: 1
     });
@@ -16,7 +17,7 @@ export const register = async (req: Request, res: Response) => {
 
 export const getAllAsync = async (req: Request, res: Response) => {
 
-    const entities = await TipoDocumento.findAll({ where: { disponible: 1 } });
+    const entities = await TipoDocumentoIdentidad.findAll({ where: { disponible: 1 } });
 
     res.json(entities);
 }
@@ -25,7 +26,7 @@ export const getAsync = async (req: Request, res: Response) => {
 
     const { id } = req.body;
 
-    const entity = await TipoDocumento.findOne({ where: { id: id } });
+    const entity = await TipoDocumentoIdentidad.findOne({ where: { id: id } });
 
     res.json(entity);
 }
