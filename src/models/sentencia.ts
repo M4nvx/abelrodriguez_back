@@ -9,6 +9,7 @@ export const Sentencia = sequelize.define('Sentencia', {
     },
     titulo: { type: DataTypes.STRING, allowNull: false },
     foto: { type: DataTypes.STRING, allowNull: true },
+    imagePath:  { type: DataTypes.STRING, allowNull: false },
     descripcion: { type: DataTypes.STRING, allowNull: false },
     detalle: { type: DataTypes.STRING, allowNull: false },
     fecha: { type: DataTypes.DATE, allowNull: false },

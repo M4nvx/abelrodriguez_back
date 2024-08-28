@@ -9,6 +9,7 @@ export const Documento = sequelize.define('Documento', {
     },
     idExpediente: { type: DataTypes.INTEGER, allowNull: false },
     nombre: { type: DataTypes.STRING, allowNull: false },
+    documentPath:  { type: DataTypes.STRING, allowNull: false },
     descripcion: { type: DataTypes.STRING, allowNull: false },
     fecha: { type: DataTypes.DATE, allowNull: false },
     disponible: { type: DataTypes.INTEGER, allowNull: false },

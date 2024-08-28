@@ -16,6 +16,8 @@ npm i --save-dev nodemon
 
 npm i --save-dev @typesript
 
+npm i --save-dev @types/cors
+
 npm i --save-dev @types/jsonwebtoken
 
 <!-- ejecutar -->

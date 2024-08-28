@@ -10,7 +10,7 @@ export const register = async (req: Request, res: Response) => {
             idEstadoExpediente:idEstadoExpediente,
             detalle: detalle,
             fecha: fecha,
-            diponible: 1,
+            disponible: 1,
         });
 
         res.json({

@@ -9,6 +9,7 @@ export const Resolucion = sequelize.define('Resolucion', {
     },
     titulo:  { type: DataTypes.STRING, allowNull: false },
     foto:  { type: DataTypes.STRING, allowNull: true },
+    imagePath:  { type: DataTypes.STRING, allowNull: false },
     descripcion: { type: DataTypes.STRING, allowNull: false },
     detalle: { type: DataTypes.STRING, allowNull: false },
     enlace: { type: DataTypes.STRING, allowNull: true },
