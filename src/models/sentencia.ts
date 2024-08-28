@@ -14,5 +14,5 @@ export const Sentencia = sequelize.define('Sentencia', {
     detalle: { type: DataTypes.STRING, allowNull: false },
     fecha: { type: DataTypes.DATE, allowNull: false },
     enlace: { type: DataTypes.STRING, allowNull: true },
-    diponible: { type: DataTypes.INTEGER, allowNull: false },
+    disponible: { type: DataTypes.INTEGER, allowNull: false },
 });
