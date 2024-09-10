@@ -9,6 +9,7 @@ export const Articulo = sequelize.define('Articulo', {
     },
     foto: { type: DataTypes.STRING, allowNull: false },
     imagePath:  { type: DataTypes.STRING, allowNull: false },
+    documentPath:  { type: DataTypes.STRING, allowNull: true },
     titulo: { type: DataTypes.STRING, allowNull: false },
     detalle: { type: DataTypes.STRING, allowNull: false },
     fecha: { type: DataTypes.DATE, allowNull: false },

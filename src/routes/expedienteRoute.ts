@@ -1,9 +1,11 @@
 import { Router } from "express";
-import { getByIdAsync, getByIdUsuarioAsync, register } from "../controllers/expediente";
+import { deleteAsync, getAsync, getByIdUsuarioAsync, register, updateAsync } from "../controllers/expediente";
 
 const expedienteRoute = Router();
-expedienteRoute.post("/api/expediente/register", register);
-expedienteRoute.get("/api/expediente/getByIdUsuario", getByIdUsuarioAsync);
-expedienteRoute.get("/api/expediente/getById", getByIdAsync);
+expedienteRoute.post("/register", register);
+expedienteRoute.get("/usuario/:id", getByIdUsuarioAsync);
+expedienteRoute.get("/:id", getAsync);
+expedienteRoute.delete('/:id', deleteAsync);
+expedienteRoute.put('/:id',  updateAsync);
 
 export default expedienteRoute;

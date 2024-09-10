@@ -1,7 +1,7 @@
 import { DataTypes, NUMBER } from "sequelize";
 import sequelize from "../database/connection";
 
-export const Documento = sequelize.define('Documento', {
+export const DocumentoExpediente = sequelize.define('DocumentoExpediente', {
     id: {
         type: DataTypes.INTEGER,
         primaryKey: true,

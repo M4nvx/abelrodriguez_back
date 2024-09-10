@@ -7,25 +7,27 @@ import casoRoute from '../routes/casoRoute';
 import resolucionRoute from '../routes/resolucionRoute';
 import sentenciaRoute from '../routes/sentenciaRoute';
 import usuarioRoute from '../routes/usuarioRoute';
-import documentoRoute from '../routes/documentoRoute';
+import documentoExpedienteRoute from '../routes/documentoExpedienteRoute';
 import estadoExpedienteRoute from '../routes/estadoExpedienteRoute';
 import expedienteRoute from '../routes/expedienteRoute';
 import rolRoute from '../routes/rolRoute';
 import tipoDocumentoRoute from '../routes/tipoDocumentoRoute';
 import tipoDocumentoIdentidadRoute from '../routes/tipoDocumentoIdentidadRoute';
+import estadoUsuarioRoute from '../routes/estadoUsuarioRoute';
 
 import { Usuario } from './usuario';
 import { Resolucion } from './resolucion';
 import { Auth } from './auth';
 import { Sentencia } from './sentencia';
 import { Caso } from './caso';
-import { Documento } from './documento';
+import { DocumentoExpediente } from './documentoExpediente';
 import { EstadoExpediente } from './estadoExpediente';
 import { Expediente } from './expediente';
 import { Rol } from './rol';
 import { TipoDocumento } from './tipoDocumento';
 import { TipoDocumentoIdentidad } from './tipoDocumentoIdentidad';
 import { Articulo } from './articulo';
+import { EstadoUsuario } from './estadoUsuario';
 
 class Server {
 
@@ -51,15 +53,16 @@ class Server {
         this.app.use('/api/articulo', articuloRoute);
         this.app.use(authRoute);
         this.app.use('/api/caso', casoRoute);
-        this.app.use('/api/documento',documentoRoute);
-        this.app.use('/api/estado',estadoExpedienteRoute);
-        this.app.use('/api/expediente',expedienteRoute);
-        this.app.use('/api/resolucion',resolucionRoute);
-        this.app.use('/api/rol',rolRoute);
-        this.app.use('/api/sentencia',sentenciaRoute);
-        this.app.use('/api/tipoDocumento',tipoDocumentoRoute);
-        this.app.use('/api/tipoDocumentoIdentidad',tipoDocumentoIdentidadRoute);
-        this.app.use('/api/usuario',usuarioRoute);
+        this.app.use('/api/documentoExpediente', documentoExpedienteRoute);
+        this.app.use('/api/estadoExpediente', estadoExpedienteRoute);
+        this.app.use('/api/expediente', expedienteRoute);
+        this.app.use('/api/resolucion', resolucionRoute);
+        this.app.use('/api/rol', rolRoute);
+        this.app.use('/api/sentencia', sentenciaRoute);
+        this.app.use('/api/tipoDocumento', tipoDocumentoRoute);
+        this.app.use('/api/tipoDocumentoIdentidad', tipoDocumentoIdentidadRoute);
+        this.app.use('/api/usuario', usuarioRoute);
+        this.app.use('/api/estadoUsuario', estadoUsuarioRoute);
     }
 
     midlewares() {
@@ -75,15 +78,16 @@ class Server {
             await Articulo.sync({ force: true });
             await Auth.sync();
             await Caso.sync();
-            await Documento.sync({ force: true });
-            await EstadoExpediente.sync({ force: true });
+            await DocumentoExpediente.sync();
+            await EstadoExpediente.sync();
             await Expediente.sync({ force: true });
             await Resolucion.sync({ force: true });
             await Rol.sync();
             await Sentencia.sync();
-            await TipoDocumento.sync({ force: true });
+            await TipoDocumento.sync();
             await TipoDocumentoIdentidad.sync();
-            await Usuario.sync({ force: true });
+            await EstadoUsuario.sync();
+            await Usuario.sync();
 
             console.log("Contexión Exitosa");
         } catch (err) {

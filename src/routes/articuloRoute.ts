@@ -6,7 +6,7 @@ import { register, updateAsync, deleteAsync, getAllAsync, getAsync  } from "../c
 
 // Create a Multer instance with a destination folder for file uploads
 const storage = multer.diskStorage({
-    destination: process.env.ARTICULO_FILE_PATH,
+    destination: process.env.ARTICULO_FILE_PATH || 'C:\\temp\\fakepath\\Articulo',
     filename: (req, file, cb) => {
         const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9);
         const ext = path.extname(file.originalname);

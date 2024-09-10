@@ -1,26 +1,24 @@
 import { Request, Response } from "express";
-import { Usuario } from "../models/usuario";
-import { EstadoUsuario } from "../models/estadoUsuario";
+import { DocumentoExpediente } from "../models/documentoExpediente";
 
 export const register = async (req: Request, res: Response) => {
-    const { idTipoDocumento, idEstadoUsuario, numeroDocumento, nombres, apellidos, direccion, telefono, observacion, fechaNacimiento } = req.body;
+    const { idExpediente, nombre, disponible, fecha } = req.body;
+
+    if (!req.file) {
+        return res.status(400).json({ error: 'No file uploaded 2.1' });
+    }
 
     try {
-        Usuario.create({
-            idTipoDocumento: idTipoDocumento,
-            numeroDocumento: numeroDocumento,
-            idEstado: idEstadoUsuario,
-            nombres: nombres,
-            apellidos: apellidos,
-            direccion: direccion,
-            telefono: telefono,
-            observacion: observacion,
-            fechaNacimiento: fechaNacimiento,
-            disponible: 1
+        DocumentoExpediente.create({
+            idExpediente: idExpediente,
+            nombre: req.file.filename,
+            documentoPath: req.file.path,
+            fecha: fecha,
+            disponible: 1,
         });
 
         res.json({
-            msg: `Usuario.. create success...`
+            msg: `Documento.. create success...`
         });
     }
     catch (err) {
@@ -30,12 +28,11 @@ export const register = async (req: Request, res: Response) => {
     }
 }
 
-export const getAllAsync = async (req: Request, res: Response) => {
+export const getByIdExpedienteAsync = async (req: Request, res: Response) => {
 
-    const entities = await Usuario.findAll({
-        where: { disponible: 1 },
-        // include: [{ model: EstadoUsuario }]
-    });
+    const { id } = req.params;
+
+    const entities = await DocumentoExpediente.findAll({ where: { disponible: 1, idExpediente: id } });
 
     res.json(entities);
 }
@@ -44,7 +41,7 @@ export const getAsync = async (req: Request, res: Response) => {
 
     const { id } = req.params;
 
-    const entity = await Usuario.findByPk(id);
+    const entity = await DocumentoExpediente.findByPk(id);
 
     if (entity) {
         res.json(entity)
@@ -55,10 +52,9 @@ export const getAsync = async (req: Request, res: Response) => {
     }
 }
 
-
 export const deleteAsync = async (req: Request, res: Response) => {
     const { id } = req.params;
-    const entity = await Usuario.findByPk(id);
+    const entity = await DocumentoExpediente.findByPk(id);
 
     if (!entity) {
         res.status(404).json({
@@ -81,8 +77,12 @@ export const updateAsync = async (req: Request, res: Response) => {
     }
 
     try {
-        const entity = await Usuario.findByPk(id);
+        const entity = await DocumentoExpediente.findByPk(id);
         if (entity) {
+
+            body.nombre = req.file.filename;
+            body.documentoPath = req.file.path;
+
             await entity.update(body);
             res.json({
                 msg: 'Fue actualziado con exito'

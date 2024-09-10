@@ -1,22 +1,23 @@
 import { Request, Response } from "express";
-import { EstadoExpediente } from "../models/estadoExpediente";
+import { EstadoUsuario } from "../models/estadoUsuario";
+
 
 export const register = async (req: Request, res: Response) => {
     const { descripcion } = req.body;
 
-    EstadoExpediente.create({
+    EstadoUsuario.create({
         descripcion: descripcion,
         disponible: 1
     });
 
     res.json({
-        msg: `EstadoExpediente.. create success...`
+        msg: `EstadoUsuario.. create success...`
     });
 }
 
 export const getAllAsync = async (req: Request, res: Response) => {
 
-    const entities = await EstadoExpediente.findAll({ where: { disponible: 1 } });
+    const entities = await EstadoUsuario.findAll({ where: { disponible: 1 } });
 
     res.json(entities);
 }
@@ -24,7 +25,7 @@ export const getAllAsync = async (req: Request, res: Response) => {
 export const getAsync = async (req: Request, res: Response) => {
     const { id } = req.params;
 
-    const entity = await EstadoExpediente.findByPk(id);
+    const entity = await EstadoUsuario.findByPk(id);
 
     if (entity) {
         res.json(entity)
