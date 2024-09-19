@@ -53,7 +53,7 @@ class Server {
         this.app.use('/api/articulo', articuloRoute);
         this.app.use(authRoute);
         this.app.use('/api/caso', casoRoute);
-        this.app.use('/api/documentoExpediente', documentoExpedienteRoute);
+        this.app.use('/api/expedienteDocumento', documentoExpedienteRoute);
         this.app.use('/api/estadoExpediente', estadoExpedienteRoute);
         this.app.use('/api/expediente', expedienteRoute);
         this.app.use('/api/resolucion', resolucionRoute);

@@ -5,7 +5,7 @@ import { deleteAsync, getAsync, getByIdExpedienteAsync, register, updateAsync } 
 
 // Create a Multer instance with a destination folder for file uploads
 const storage = multer.diskStorage({
-    destination: process.env.EXPEDIENTE_FILE_PATH,
+    destination: process.env.EXPEDIENTE_FILE_PATH  || 'C:\\temp\\fakepath\\ExpedienteDocumento' ,
     filename: (req, file, cb) => {
         const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9);
         const ext = path.extname(file.originalname);

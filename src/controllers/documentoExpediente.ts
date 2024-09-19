@@ -2,17 +2,18 @@ import { Request, Response } from "express";
 import { DocumentoExpediente } from "../models/documentoExpediente";
 
 export const register = async (req: Request, res: Response) => {
-    const { idExpediente, nombre, disponible, fecha } = req.body;
+    const { idExpediente, nombre, descripcion, fecha } = req.body;
 
     if (!req.file) {
         return res.status(400).json({ error: 'No file uploaded 2.1' });
     }
 
-    try {
+   try {
         DocumentoExpediente.create({
             idExpediente: idExpediente,
-            nombre: req.file.filename,
-            documentoPath: req.file.path,
+            nombre: nombre,
+            descripcion: descripcion,
+            documentPath: req.file.filename,
             fecha: fecha,
             disponible: 1,
         });

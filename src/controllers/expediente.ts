@@ -2,13 +2,13 @@ import { Request, Response } from "express";
 import { Expediente } from "../models/expediente";
 
 export const register = async (req: Request, res: Response) => {
-    const { idUsuario, idEstado, detalle, fecha } = req.body;
+    const { idUsuario, idEstadoExpediente, detalle, fecha } = req.body;
 
     try {
 
         Expediente.create({
             idUsuario: idUsuario,
-            idEstadoExpediente: idEstado,
+            idEstadoExpediente: idEstadoExpediente,
 
             detalle: detalle,
             fecha: fecha,

@@ -21,7 +21,7 @@ npm i --save-dev @types/cors
 npm i --save-dev @types/jsonwebtoken
 
 <!-- ejecutar -->
-npm tsc --watch
+npx tsc --watch
 npm run dev
 
 npm run typesript
