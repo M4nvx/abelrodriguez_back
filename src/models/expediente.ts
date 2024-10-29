@@ -13,3 +13,5 @@ export const Expediente = sequelize.define('Expediente', {
     fecha: { type: DataTypes.DATE, allowNull: false },
     disponible: { type: DataTypes.INTEGER, allowNull: false },
 });
+
+// Expediente.belongsToMany("". {});

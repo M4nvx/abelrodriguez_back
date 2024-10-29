@@ -36,7 +36,7 @@ class Server {
 
     constructor() {
         this.app = express();
-        this.port = process.env.PORT || '3010';
+        this.port = process.env.PORT || '3017';
         this.listen();
         this.midlewares();
         this.router();
@@ -51,7 +51,7 @@ class Server {
 
     router() {
         this.app.use('/api/articulo', articuloRoute);
-        this.app.use(authRoute);
+        this.app.use('/api/auth', authRoute);
         this.app.use('/api/caso', casoRoute);
         this.app.use('/api/expedienteDocumento', documentoExpedienteRoute);
         this.app.use('/api/estadoExpediente', estadoExpedienteRoute);
@@ -77,13 +77,13 @@ class Server {
             // await sequelize.authenticate(){ force: true };
             await Articulo.sync({ force: true });
             await Auth.sync();
-            await Caso.sync();
+            await Caso.sync({ force: true });
             await DocumentoExpediente.sync();
             await EstadoExpediente.sync();
             await Expediente.sync({ force: true });
             await Resolucion.sync({ force: true });
             await Rol.sync();
-            await Sentencia.sync();
+            await Sentencia.sync({ force: true });
             await TipoDocumento.sync();
             await TipoDocumentoIdentidad.sync();
             await EstadoUsuario.sync();

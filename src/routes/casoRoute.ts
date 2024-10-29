@@ -7,7 +7,7 @@ import path from 'path'
 
 // Create a Multer instance with a destination folder for file uploads
 const storage = multer.diskStorage({
-    destination: process.env.CASO_FILE_PATH,
+    destination: process.env.CASO_FILE_PATH  || 'media\\casos',
     filename: (req, file, cb) => {
         const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9);
         const ext = path.extname(file.originalname);
@@ -18,11 +18,10 @@ const storage = multer.diskStorage({
 const upload = multer({ storage });
 const casoRoute = Router();
 
-casoRoute.post("/register", upload.single('image'), register);
-// casoRoute.get("/api/caso/getAll", validateToken, getAllAsync);
+casoRoute.post("/register", validateToken, upload.single('image'), register);
 casoRoute.get("/getAll", getAllAsync);
-casoRoute.get("/:id", getAsync);
-casoRoute.delete('/:id', deleteAsync);
-casoRoute.put('/:id', upload.single('image'), updateAsync);
+casoRoute.get("/:id", validateToken, getAsync);
+casoRoute.delete('/:id', validateToken, deleteAsync);
+casoRoute.put('/:id', validateToken, upload.single('image'), updateAsync);
 
 export default casoRoute;

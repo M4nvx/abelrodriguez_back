@@ -1,11 +1,12 @@
 import { Router } from "express";
 import { deleteAsync, getAsync, getByIdUsuarioAsync, register, updateAsync } from "../controllers/expediente";
+import validateToken from "../utils/validateToken";
 
 const expedienteRoute = Router();
-expedienteRoute.post("/register", register);
-expedienteRoute.get("/usuario/:id", getByIdUsuarioAsync);
-expedienteRoute.get("/:id", getAsync);
-expedienteRoute.delete('/:id', deleteAsync);
-expedienteRoute.put('/:id',  updateAsync);
+expedienteRoute.post("/register", validateToken, register);
+expedienteRoute.get("/usuario/:id", validateToken, getByIdUsuarioAsync);
+expedienteRoute.get("/:id", validateToken, getAsync);
+expedienteRoute.delete('/:id', validateToken, deleteAsync);
+expedienteRoute.put('/:id', validateToken, updateAsync);
 
 export default expedienteRoute;

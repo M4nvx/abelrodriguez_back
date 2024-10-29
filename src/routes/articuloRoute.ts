@@ -2,11 +2,11 @@ import { Router } from "express";
 import validateToken from "../utils/validateToken";
 import multer from 'multer';
 import path from 'path'
-import { register, updateAsync, deleteAsync, getAllAsync, getAsync  } from "../controllers/articulo";
+import { register, updateAsync, deleteAsync, getAllAsync, getAsync } from "../controllers/articulo";
 
 // Create a Multer instance with a destination folder for file uploads
 const storage = multer.diskStorage({
-    destination: process.env.ARTICULO_FILE_PATH || 'C:\\temp\\fakepath\\Articulo',
+    destination: process.env.ARTICULO_FILE_PATH || 'media\\articulos',
     filename: (req, file, cb) => {
         const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9);
         const ext = path.extname(file.originalname);
@@ -14,13 +14,15 @@ const storage = multer.diskStorage({
     }
 });
 
+console.log("********************************************************************************This access ARTICULO_FILE_PATH is: " + process.env.ARTICULO_FILE_PATH);
+
 const upload = multer({ storage });
 const articuloRoute = Router();
 
-articuloRoute.post("/register", upload.single('image'), register);
+articuloRoute.post("/register", validateToken, upload.single('image'), register);
 articuloRoute.get("/getAll", getAllAsync);
-articuloRoute.get("/:id", getAsync);
-articuloRoute.delete('/:id', deleteAsync);
-articuloRoute.put('/:id', upload.single('image'), updateAsync);
+articuloRoute.get("/:id", validateToken, getAsync);
+articuloRoute.delete('/:id', validateToken, deleteAsync);
+articuloRoute.put('/:id', validateToken, upload.single('image'), updateAsync);
 
 export default articuloRoute;

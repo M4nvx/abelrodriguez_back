@@ -4,7 +4,7 @@ import { Auth } from "../models/auth";
 import jwt from "jsonwebtoken";
 
 export const register = async (req: Request, res: Response) => {
-    const { usuario, password } = req.body;
+    const { idUsuario, usuario, password } = req.body;
 
     const userUnique = await Auth.findOne({ where: { usuario: usuario } });
 
@@ -21,6 +21,8 @@ export const register = async (req: Request, res: Response) => {
         Auth.create({
             usuario: usuario,
             password: passwordHash,
+            idUsuario : idUsuario,
+            idRol : 5,
             disponible: 1
         });
 
@@ -37,9 +39,9 @@ export const register = async (req: Request, res: Response) => {
 
 export const login = async (req: Request, res: Response) => {
 
-    const { usuario, password } = req.body;
+    const { username, password } = req.body;
 
-    const entity: any = await Auth.findOne({ where: { usuario: usuario } });
+    const entity: any = await Auth.findOne({ where: { usuario: username } });
     if (!entity) {
         return res.status(400).json({
             msg: `Usuario no existe`
@@ -53,7 +55,8 @@ export const login = async (req: Request, res: Response) => {
         });
     }
 
-    const token = jwt.sign({ usuario: usuario }, process.env.ACCESS_TOKEN || 'JkC1535787157188714TK', { expiresIn: '1h' });
+    const jwtToken = jwt.sign({ usuario: username }, process.env.ACCESS_TOKEN || 'JkC1535787157188714TK', { expiresIn: '1h' });
 
-    res.json({ token });
+    res.json({ jwtToken, username: username, role : entity.idRol});
 }
+
