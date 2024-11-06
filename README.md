@@ -25,3 +25,7 @@ npx tsc --watch
 npm run dev
 
 npm run typesript
+
+-- GIt
+
+git pull -rebase

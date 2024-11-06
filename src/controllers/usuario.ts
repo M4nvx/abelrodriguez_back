@@ -1,6 +1,5 @@
 import { Request, Response } from "express";
-import { Usuario } from "../models/usuario";
-import { EstadoUsuario } from "../models/estadoUsuario";
+import { EstadoUsuario, Usuario } from "../models/usuario";
 
 export const register = async (req: Request, res: Response) => {
     const { idTipoDocumento, idEstadoUsuario, numeroDocumento, nombres, apellidos, direccion, telefono, observacion, fechaNacimiento } = req.body;
@@ -34,7 +33,7 @@ export const getAllAsync = async (req: Request, res: Response) => {
 
     const entities = await Usuario.findAll({
         where: { disponible: 1 },
-        // include: [{ model: EstadoUsuario }]
+        //include: [{ model: EstadoUsuario }]
     });
 
     res.json(entities);

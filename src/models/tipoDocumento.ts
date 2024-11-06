@@ -7,6 +7,6 @@ export const TipoDocumento = sequelize.define('TipoDocumento', {
         primaryKey: true,
         autoIncrement: true
     },
-    descripcion: { type: DataTypes.STRING, allowNull: false },
+    descripcion: { type: DataTypes.TEXT, allowNull: false },
     disponible :  { type: DataTypes.INTEGER, allowNull: false },
 });

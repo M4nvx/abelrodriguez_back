@@ -11,7 +11,7 @@ export const Caso = sequelize.define('Caso', {
     foto: { type: DataTypes.STRING, allowNull: false },
     imagePath:  { type: DataTypes.STRING, allowNull: false },
     titulo: { type: DataTypes.STRING, allowNull: false },
-    detalle: { type: DataTypes.STRING, allowNull: false },
+    detalle: { type: DataTypes.TEXT, allowNull: false },
     fecha: { type: DataTypes.DATE, allowNull: false },
     disponible: { type: DataTypes.INTEGER, allowNull: false },
 });

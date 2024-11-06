@@ -1,5 +1,6 @@
 import { Request, Response } from "express";
-import { EstadoUsuario } from "../models/estadoUsuario";
+import { EstadoUsuario } from "../models/usuario";
+// import { EstadoUsuario } from "../models/estadoUsuario";
 
 
 export const register = async (req: Request, res: Response) => {

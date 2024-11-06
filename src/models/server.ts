@@ -14,8 +14,9 @@ import rolRoute from '../routes/rolRoute';
 import tipoDocumentoRoute from '../routes/tipoDocumentoRoute';
 import tipoDocumentoIdentidadRoute from '../routes/tipoDocumentoIdentidadRoute';
 import estadoUsuarioRoute from '../routes/estadoUsuarioRoute';
+import tipoSentenciaRoute from '../routes/tipoSentenciaRoute';
 
-import { Usuario } from './usuario';
+import { EstadoUsuario, Usuario } from './usuario';
 import { Resolucion } from './resolucion';
 import { Auth } from './auth';
 import { Sentencia } from './sentencia';
@@ -27,7 +28,7 @@ import { Rol } from './rol';
 import { TipoDocumento } from './tipoDocumento';
 import { TipoDocumentoIdentidad } from './tipoDocumentoIdentidad';
 import { Articulo } from './articulo';
-import { EstadoUsuario } from './estadoUsuario';
+import { TipoSentencia } from './tipoSentencia';
 
 class Server {
 
@@ -61,6 +62,7 @@ class Server {
         this.app.use('/api/sentencia', sentenciaRoute);
         this.app.use('/api/tipoDocumento', tipoDocumentoRoute);
         this.app.use('/api/tipoDocumentoIdentidad', tipoDocumentoIdentidadRoute);
+        this.app.use('/api/tipoSentencia', tipoSentenciaRoute);
         this.app.use('/api/usuario', usuarioRoute);
         this.app.use('/api/estadoUsuario', estadoUsuarioRoute);
     }
@@ -86,6 +88,7 @@ class Server {
             await Sentencia.sync({ force: true });
             await TipoDocumento.sync();
             await TipoDocumentoIdentidad.sync();
+            await TipoSentencia.sync();
             await EstadoUsuario.sync();
             await Usuario.sync();
 

@@ -2,7 +2,7 @@ import { Request, Response } from "express";
 import { Sentencia } from "../models/sentencia";
 
 export const register = async (req: Request, res: Response) => {
-    const { titulo, foto, descripcion, detalle, fecha, enlace } = req.body;
+    const { titulo, idTipo, foto, descripcion, detalle, fecha, enlace } = req.body;
 
     if (!req.file) {
         return res.status(400).json({ error: 'No file uploaded 2.1' });
@@ -11,6 +11,7 @@ export const register = async (req: Request, res: Response) => {
     try {
         Sentencia.create({
             titulo: titulo,
+            idTipo : idTipo,
             foto: req.file.filename,
             imagePath : req.file.path,
             descripcion: descripcion,
