@@ -77,13 +77,13 @@ class Server {
     async dbConnect() {
         try {
             // await sequelize.authenticate(){ force: true };
-            await Articulo.sync({ force: true });
+            await Articulo.sync();
             await Auth.sync();
-            await Caso.sync({ force: true });
+            await Caso.sync();
             await DocumentoExpediente.sync();
             await EstadoExpediente.sync();
-            await Expediente.sync({ force: true });
-            await Resolucion.sync({ force: true });
+            await Expediente.sync();
+            await Resolucion.sync();
             await Rol.sync();
             await Sentencia.sync({ force: true });
             await TipoDocumento.sync();

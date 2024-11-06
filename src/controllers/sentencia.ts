@@ -1,19 +1,24 @@
 import { Request, Response } from "express";
 import { Sentencia } from "../models/sentencia";
 
-export const register = async (req: Request, res: Response) => {
+export const register = async (req: any, res: Response) => {
     const { titulo, idTipo, foto, descripcion, detalle, fecha, enlace } = req.body;
 
-    if (!req.file) {
+    if (!req.files) {
         return res.status(400).json({ error: 'No file uploaded 2.1' });
     }
+
+    const documentFile = req.files.document[0];
+    const imageGraphic = req.files.image[0];
 
     try {
         Sentencia.create({
             titulo: titulo,
             idTipo : idTipo,
-            foto: req.file.filename,
-            imagePath : req.file.path,
+            foto: imageGraphic.filename,
+            imagePath: imageGraphic.path,
+            documento: documentFile.filename,
+            documentPath: documentFile.path,
             descripcion: descripcion,
             detalle:detalle,
             fecha: fecha,
@@ -74,16 +79,16 @@ export const updateAsync = async (req: Request, res: Response) => {
     const { body } = req;
     const { id } = req.params;
 
-    if (!req.file) {
-        return res.status(400).json({ error: 'No file uploaded 2.1' });
-    }
+    // if (!req.file) {
+    //     return res.status(400).json({ error: 'No file uploaded 2.1' });
+    // }
 
     try {
         const entity = await Sentencia.findByPk(id);
         if (entity) {
 
-            body.foto = req.file.filename;
-            body.imagePath = req.file.path;
+            // body.foto = req.file.filename;
+            // body.imagePath = req.file.path;
 
             await entity.update(body);
             res.json({

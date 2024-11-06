@@ -6,7 +6,7 @@ import validateToken from "../utils/validateToken";
 
 // Create a Multer instance with a destination folder for file uploads
 const storage = multer.diskStorage({
-    destination: process.env.RESOLUCION_FILE_PATH  || 'media\\resoluciones',
+    destination: process.env.RESOLUCION_FILE_PATH  || 'media/resoluciones',
     filename: (req, file, cb) => {
         const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9);
         const ext = path.extname(file.originalname);

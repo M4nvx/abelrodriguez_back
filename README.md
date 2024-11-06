@@ -29,3 +29,8 @@ npm run typesript
 -- GIt
 
 git pull -rebase
+
+
+--Deloy
+https://www.youtube.com/watch?v=yak22tkm9Rs
+https://abelrodriguez.pe:2083/cpsess3660582909/frontend/jupiter/terminal/index.html

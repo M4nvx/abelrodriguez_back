@@ -2,17 +2,22 @@ import { Request, Response } from "express";
 import { Articulo } from "../models/articulo";
 
 
-export const register = async (req: Request, res: Response) => {
+export const register = async (req: any, res: Response) => {
     const { foto, titulo, detalle, fecha } = req.body;
 
-    if (!req.file) {
+    if (!req.files) {
         return res.status(400).json({ error: 'No file uploaded 2.1' });
     }
-    
+
+    const documentFile = req.files.document[0];
+    const imageGraphic = req.files.image[0];
+
     try {
         Articulo.create({
-            foto: req.file.filename,
-            imagePath : req.file.path,
+            foto: imageGraphic.filename,
+            imagePath: imageGraphic.path,
+            documento: documentFile.filename,
+            documentPath: documentFile.path,
             titulo: titulo,
             detalle: detalle,
             fecha: fecha,
@@ -72,16 +77,16 @@ export const updateAsync = async (req: Request, res: Response) => {
     const { body } = req;
     const { id } = req.params;
 
-    if (!req.file) {
-        return res.status(400).json({ error: 'No file uploaded 2.1' });
-    }
+    // if (!req.file) {
+    //     return res.status(400).json({ error: 'No file uploaded 2.1' });
+    // }
 
     try {
         const entity = await Articulo.findByPk(id);
         if (entity) {
 
-            body.foto = req.file.filename;
-            body.imagePath = req.file.path;
+            // body.foto = req.file.filename;
+            // body.imagePath = req.file.path;
 
             await entity.update(body);
             res.json({

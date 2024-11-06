@@ -6,7 +6,7 @@ import { register, updateAsync, deleteAsync, getAllAsync, getAsync } from "../co
 
 // Create a Multer instance with a destination folder for file uploads
 const storage = multer.diskStorage({
-    destination: process.env.ARTICULO_FILE_PATH || 'media\\articulos',
+    destination: process.env.ARTICULO_FILE_PATH || 'media/articulos',
     filename: (req, file, cb) => {
         const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9);
         const ext = path.extname(file.originalname);
@@ -19,10 +19,14 @@ console.log("*******************************************************************
 const upload = multer({ storage });
 const articuloRoute = Router();
 
-articuloRoute.post("/register", validateToken, upload.single('image'), register);
+articuloRoute.post("/register", validateToken, upload.fields([{
+    name: 'image', maxCount: 1
+  }, {
+    name: 'document', maxCount: 1
+  }]) , register);
 articuloRoute.get("/getAll", getAllAsync);
 articuloRoute.get("/:id", validateToken, getAsync);
 articuloRoute.delete('/:id', validateToken, deleteAsync);
-articuloRoute.put('/:id', validateToken, upload.single('image'), updateAsync);
+articuloRoute.put('/:id', validateToken, upload.array('image'), updateAsync);
 
 export default articuloRoute;
