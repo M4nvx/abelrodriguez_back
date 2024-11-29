@@ -85,8 +85,10 @@ export const updateAsync = async (req: Request, res: Response) => {
         const entity = await Articulo.findByPk(id);
         if (entity) {
 
-            // body.foto = req.file.filename;
-            // body.imagePath = req.file.path;
+            if (req.file && req.file.filename) {
+                body.foto = req.file.filename;
+                body.imagePath = req.file.path;
+            }
 
             await entity.update(body);
             res.json({

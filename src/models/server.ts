@@ -85,7 +85,7 @@ class Server {
             await Expediente.sync();
             await Resolucion.sync();
             await Rol.sync();
-            await Sentencia.sync({ force: true });
+            await Sentencia.sync();
             await TipoDocumento.sync();
             await TipoDocumentoIdentidad.sync();
             await TipoSentencia.sync();

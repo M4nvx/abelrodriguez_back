@@ -72,16 +72,18 @@ export const updateAsync = async (req: Request, res: Response) => {
     const { body } = req;
     const { id } = req.params;
 
-    if (!req.file) {
-        return res.status(400).json({ error: 'No file uploaded 2.1' });
-    }
+    // if (!req.file) {
+    //     return res.status(400).json({ error: 'No file uploaded 2.1' });
+    // }
 
     try {
         const entity = await Caso.findByPk(id);
         if (entity) {
 
-            body.foto = req.file.filename;
-            body.imagePath = req.file.path;
+            if (req.file && req.file.filename) {
+                body.foto = req.file.filename;
+                body.imagePath = req.file.path;
+            }
 
             await entity.update(body);
             res.json({
