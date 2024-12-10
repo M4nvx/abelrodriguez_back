@@ -22,8 +22,12 @@ sentenciaRoute.post("/register", validateToken, upload.fields([{
     name: 'document', maxCount: 1
   }]) , register);
 sentenciaRoute.get("/getAll", getAllAsync);
-sentenciaRoute.get("/:id", validateToken, getAsync);
+sentenciaRoute.get("/:id",  getAsync);
 sentenciaRoute.delete('/:id', validateToken, deleteAsync);
-sentenciaRoute.put('/:id', validateToken, upload.single('image'), updateAsync);
+sentenciaRoute.put('/:id', validateToken, upload.fields([{
+  name: 'image', maxCount: 1
+}, {
+  name: 'document', maxCount: 1
+}]) ,  updateAsync);
 
 export default sentenciaRoute;

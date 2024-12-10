@@ -39,7 +39,7 @@ export const register = async (req: any, res: Response) => {
 
 export const getAllAsync = async (req: Request, res: Response) => {
 
-    const entities = await Sentencia.findAll({ where: { disponible: 1 } });
+    const entities = await Sentencia.findAll({ where: { disponible: 1 }, order: [ ['id', 'DESC']] });
 
     res.json(entities);
 }
@@ -75,21 +75,28 @@ export const deleteAsync = async (req: Request, res: Response) => {
     }
 }
 
-export const updateAsync = async (req: Request, res: Response) => {
+export const updateAsync = async (req: any, res: Response) => {
     const { body } = req;
     const { id } = req.params;
-
-    // if (!req.file) {
-    //     return res.status(400).json({ error: 'No file uploaded 2.1' });
-    // }
 
     try {
         const entity = await Sentencia.findByPk(id);
         if (entity) {
 
-            if (req.file && req.file.filename) {
-                body.foto = req.file.filename;
-                body.imagePath = req.file.path;
+            if (req.files) {
+
+                if (req.files.document) {
+                    const documentFile = req.files.document[0];
+                    body.documento = documentFile.filename;
+                    body.documentPath = documentFile.path;
+                }
+
+                if (req.files.image) {
+                    const imageGraphic = req.files.image[0];
+
+                    body.foto = imageGraphic.filename;
+                    body.imagePath = imageGraphic.path;
+                }
             }
 
             await entity.update(body);

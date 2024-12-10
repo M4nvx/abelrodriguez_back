@@ -1,4 +1,4 @@
-import { DataTypes, NUMBER } from "sequelize";
+import { DataTypes } from "sequelize";
 import sequelize from "../database/connection";
 
 export const Articulo = sequelize.define('Articulo', {
